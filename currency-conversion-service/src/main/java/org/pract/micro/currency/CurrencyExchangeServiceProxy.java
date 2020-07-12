@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.cloud.openfeign.FeignClient;
 
-@FeignClient(name="forex-service")
+@FeignClient(name="forex-service", fallback = CurrencyExchangeFallback.class)
 @RibbonClient(name="forex-service")
 public interface CurrencyExchangeServiceProxy {
     @GetMapping("/currency-exchange/from/{from}/to/{to}")
